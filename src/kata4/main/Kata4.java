@@ -17,51 +17,35 @@ import kata4.view.MailListReader;
 
 
 public class Kata4 {
-    public static List<Mail> mails = new ArrayList<Mail>();
-    
+    public List<Mail> mails = new ArrayList<Mail>();
+    Histogram histogram = new Histogram();
     
     public static void main(String[] args) {
-        execute();
+        Kata4 exec = new Kata4();
+        exec.execute();
 
     }
     
-    public static void execute(){
+    public void execute(){
         
         input();
         proccess();
         output();
     }
     
-    public static void input(){
-        String file = "email.txt";
-        List<Mail> res = new ArrayList<Mail>();
-        try{
-            
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            StringBuffer sb = new StringBuffer();
-            String line;
-            while((line=br.readLine()) != null){
-                Mail lineMail = new Mail(line);
-                res.add(lineMail);
-            }
-            fr.close();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-        }
-    
-    public static void proccess(){
+    public void input(){
         MailListReader mailReader = new MailListReader();
         String file = "email.txt";
         mails = mailReader.read(file);
-    }
+        }
     
-    public static void output(){
-        Histogram histogram = new Histogram();
+    public void proccess(){
+        
         MailHistogramBuilder histBuilder = new MailHistogramBuilder();
         histogram = histBuilder.build(mails);
+    }
+    
+    public void output(){
         new HistogramDisplay(histogram).execute();
     }
     
