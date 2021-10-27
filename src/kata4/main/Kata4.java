@@ -19,6 +19,7 @@ import kata4.view.MailListReader;
 public class Kata4 {
     public static List<Mail> mails = new ArrayList<Mail>();
     
+    
     public static void main(String[] args) {
         execute();
 
