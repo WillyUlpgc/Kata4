@@ -1,11 +1,5 @@
-
-
 package kata4.main;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,36 +11,17 @@ import kata4.view.MailListReader;
 
 
 public class Kata4 {
-    public List<Mail> mails = new ArrayList<Mail>();
-    Histogram histogram = new Histogram();
-    
+
     public static void main(String[] args) {
-        Kata4 exec = new Kata4();
-        exec.execute();
+        String file = "email.txt";
+        MailListReader mailReader = new MailListReader();
+        MailHistogramBuilder histBuilder = new MailHistogramBuilder();
+
+        List<Mail> mails = new ArrayList<Mail>(mailReader.read(file));
+        Histogram histogram = new Histogram();
+        histogram = histBuilder.build(mails);
+        new HistogramDisplay(histogram).execute();
+
 
     }
-    
-    public void execute(){
-        
-        input();
-        proccess();
-        output();
-    }
-    
-    public void input(){
-        MailListReader mailReader = new MailListReader();
-        String file = "email.txt";
-        mails = mailReader.read(file);
-        }
-    
-    public void proccess(){
-        
-        MailHistogramBuilder histBuilder = new MailHistogramBuilder();
-        histogram = histBuilder.build(mails);
-    }
-    
-    public void output(){
-        new HistogramDisplay(histogram).execute();
-    }
-    
 }
