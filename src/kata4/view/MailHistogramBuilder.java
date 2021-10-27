@@ -16,7 +16,7 @@ public class MailHistogramBuilder {
         List<String> domains = new ArrayList<String>();
         for(Mail mail : mails){
             String domain = mail.getDomain();
-            domains.add(domain);
+            if(!domain.equals("")) domains.add(domain);
         }
         System.out.println(Arrays.toString(domains.toArray()));
         
